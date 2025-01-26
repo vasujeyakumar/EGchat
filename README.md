@@ -36,9 +36,10 @@ This project is a chatbot capable of processing both textual and image-based que
 - pytesseract
 - PyMuPDF
 
-To install these dependencies, run:
 
-query = "discripre richart wheel "
+## query
+
+query = "discripre richart wheel ",
 response = chatbot(query)
 ### output:
 Based on the provided texts, it seems like you're asking about a Richard Wheel with specific dimensions and features. Here are the key points from the texts:
