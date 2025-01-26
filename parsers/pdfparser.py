@@ -11,6 +11,7 @@ class PDFParser:
         self.ocr_lang = ocr_lang
 
     def extract_text(self, pdf_path):
+        """Extracts text from a PDF using pdfplumber."""
         text_data = {}
         try:
             with pdfplumber.open(pdf_path) as pdf:
@@ -23,6 +24,7 @@ class PDFParser:
         return text_data
 
     def extract_images_with_ocr(self, pdf_path, output_dir):
+        """Extracts images and performs OCR on them."""
         image_data = []
         try:
             doc = fitz.open(pdf_path)
@@ -63,6 +65,7 @@ class PDFParser:
         return image_data
 
     def save_to_json(self, output_path, text_data, image_data):
+        """Saves extracted data to a JSON file."""
         try:
             data = {
                 "text_data": text_data,
@@ -73,20 +76,20 @@ class PDFParser:
         except Exception as e:
             print(f"Error saving JSON file to {output_path}: {e}")
 
-    def parse_pdfs(self, pdf_paths, base_output_dir):
-        for pdf_path in pdf_paths:
-            try:
-                pdf_name = os.path.splitext(os.path.basename(pdf_path))[0]
-                output_dir = os.path.join(base_output_dir, pdf_name)
-                output_json_path = os.path.join(output_dir, f"{pdf_name}_data.json")
+    def parse_pdf(self, pdf_path, output_dir):
+        """Processes a single PDF file."""
+        try:
+            pdf_name = os.path.splitext(os.path.basename(pdf_path))[0]
+            output_dir = os.path.join(output_dir, pdf_name)
+            output_json_path = os.path.join(output_dir, f"{pdf_name}_data.json")
 
-                print(f"Processing PDF: {pdf_path}")
-                os.makedirs(output_dir, exist_ok=True)
+            print(f"Processing PDF: {pdf_path}")
+            os.makedirs(output_dir, exist_ok=True)
 
-                text_data = self.extract_text(pdf_path)
-                image_data = self.extract_images_with_ocr(pdf_path, output_dir)
+            text_data = self.extract_text(pdf_path)
+            image_data = self.extract_images_with_ocr(pdf_path, output_dir)
 
-                self.save_to_json(output_json_path, text_data, image_data)
-                print(f"Completed processing for {pdf_name}. Results saved to {output_json_path}.\n")
-            except Exception as e:
-                print(f"Error processing PDF {pdf_path}: {e}")
+            self.save_to_json(output_json_path, text_data, image_data)
+            print(f"Completed processing for {pdf_name}. Results saved to {output_json_path}.")
+        except Exception as e:
+            print(f"Error processing PDF {pdf_path}: {e}")
