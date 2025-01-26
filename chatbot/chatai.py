@@ -1,6 +1,8 @@
 from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
-from multimodal_search import multimodal_query  # Import your multimodal query function
+import numpy as np
+import faiss
+from vectorization.vectorizer import Vectorizers
 
 # Initialize the LLM (ensure your API key is set)
 llm = ChatGroq(
@@ -25,6 +27,33 @@ prompt_template = PromptTemplate(
     input_variables=["results"]
 )
 
+def multimodal_query(query_text=None, query_image_path=None, k=5):
+    """Perform a similarity search based on a multimodal query."""
+    text_embedding = np.zeros((1, model.config.projection_dim))
+    image_embedding = np.zeros((1, model.config.projection_dim))
+
+    if query_text:
+        text_embedding = vector.embed_text(query_text).reshape(1, -1)
+    if query_image_path:
+        image_embedding = vector.embed_image(query_image_path).reshape(1, -1)
+
+    query_embedding_combined = np.concatenate((text_embedding, image_embedding), axis=-1)
+    query_embedding_combined = normalize_embedding(query_embedding_combined)
+
+    distances, indices = index.search(query_embedding_combined, k)
+
+    results = []
+    for distance, idx in zip(distances[0], indices[0]):
+        if idx == -1:
+            continue
+        results.append({
+            "distance": distance,
+            "image_path": image_dataframes[idx]["image_path"],
+            "text_data": text_dataframes[idx]["text_data"]
+        })
+
+    return results
+
 def generate_response(results):
     if results:
         results_str = "\n".join([
@@ -42,14 +71,3 @@ def generate_response(results):
         return response
     except Exception as e:
         return f"An error occurred while generating a response: {e}"
-
-def main():
-    query = input("Enter your query: ")
-    results = multimodal_query(query_text=query)  # You can add a query_image_path if needed
-    print("Retrieved Results:", results)
-    response = generate_response(results)
-    print(response)
-
-# Call main function to start interaction
-if __name__ == "__main__":
-    main()
