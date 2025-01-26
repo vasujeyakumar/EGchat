@@ -40,3 +40,18 @@ To install these dependencies, run:
 
 ```bash
 pip install -r requirements.txt
+## example Query
+query = "discripre richart wheel "
+response = chatbot(query)
+### output:
+Based on the provided texts, it seems like you're asking about a Richard Wheel with specific dimensions and features. Here are the key points from the texts:
+
+1. The wheel has a diameter that varies based on its location, with options for r6, r8, and 100mm.
+2. The wheel's diameter should be centered at 100mm, and it should align with blocks A and B, which are coincident with both corners at 37 and 13mm.
+3. There is a 45mm diameter slot (cid:72) that is 18mm from the edge.
+4. The wheel has a chamfer detail B of 10mm x 45mm.
+5. All dimensions are given in millimeters.
+6. The wheel is associated with sheets 16 of 25 and 3 of 25, and it has an alignment catch and a bottom fixture.
+7. There is also a mount bracket (.ipt) with hardware and a bracket.
+
+As for the diagrams, unfortunately, I cannot directly access or display the images you provided. However, based on the file names, it seems like they are pages from the "Autodesk Inventor Practice Part Drawings" document. Based on the file names, Page 13 might contain more detailed information about the wheel's dimensions and features, while Page 5 might provide context or additional details about the wheel's assembly or usage. I recommend reviewing these diagrams in the document for a better understanding of the Richard Wheel.![image](https://github.com/user-attachments/assets/0567ab5e-7819-4095-8b06-fae2be0db6ec)
