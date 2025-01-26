@@ -38,9 +38,6 @@ This project is a chatbot capable of processing both textual and image-based que
 
 To install these dependencies, run:
 
-```bash
-pip install -r requirements.txt
-## example Query
 query = "discripre richart wheel "
 response = chatbot(query)
 ### output:
@@ -54,4 +51,7 @@ Based on the provided texts, it seems like you're asking about a Richard Wheel w
 6. The wheel is associated with sheets 16 of 25 and 3 of 25, and it has an alignment catch and a bottom fixture.
 7. There is also a mount bracket (.ipt) with hardware and a bracket.
 
-As for the diagrams, unfortunately, I cannot directly access or display the images you provided. However, based on the file names, it seems like they are pages from the "Autodesk Inventor Practice Part Drawings" document. Based on the file names, Page 13 might contain more detailed information about the wheel's dimensions and features, while Page 5 might provide context or additional details about the wheel's assembly or usage. I recommend reviewing these diagrams in the document for a better understanding of the Richard Wheel.![image](https://github.com/user-attachments/assets/0567ab5e-7819-4095-8b06-fae2be0db6ec)
+As for the diagrams, unfortunately, I cannot directly access or display the images you provided. However, based on the file names, it seems like they are pages from the "Autodesk Inventor Practice Part Drawings" document. Based on the file names, Page 13 might contain more detailed information about the wheel's dimensions and features, while Page 5 might provide context or additional details about the wheel's assembly or usage.
+
+
+
